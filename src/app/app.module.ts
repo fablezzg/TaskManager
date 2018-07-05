@@ -10,6 +10,7 @@ import { TaskDetailComponent } from './components/task-detail/task-detail.compon
 import { NewSubTaskComponent } from './components/new-sub-task/new-sub-task.component';
 import { NewTaskComponent } from './components/new-task/new-task.component';
 import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
 
 import { ServerApiService } from './service/server-api.service';
 
@@ -21,13 +22,15 @@ import { ServerApiService } from './service/server-api.service';
     TaskDetailComponent,
     NewSubTaskComponent,
     NewTaskComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent
   ],
   imports: [
 	FormsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [ServerApiService],
   bootstrap: [AppComponent]

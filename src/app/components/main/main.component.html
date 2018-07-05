@@ -1,0 +1,17 @@
+<div id="main_title_bar" [class.dev]="!production">
+	<div class="logo_box">
+		<img class="logo" src="/assets/imgs/welgate_logo.png" alt="">
+	</div>
+	<nav>
+		<div [class.selected]="this.page == 'my-task-list'" (click)="movePage('my-task-list');">내 업무 리스트</div>
+		<div [class.selected]="this.page == 'new-task'" (click)="movePage('new-task');">새 업무 생성</div>
+		<div [class.selected]="this.page == 'history'" (click)="movePage('my-task-list');">히스토리</div>
+	</nav>
+	<div class="time_box">
+		{{today | date:'EEEE, LLL d yyyy'}}
+	</div>
+</div>
+
+<div id="main_body">
+	<router-outlet></router-outlet>
+</div>
