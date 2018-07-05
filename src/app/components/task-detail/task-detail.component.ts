@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskDetailComponent implements OnInit {
 
+  title: string; content: string; attach: string;
   constructor() { }
 
   ngOnInit() {
+    this.title = "##TITLE";
+    this.content = "##CONTENT";
+    this.attach = "NONE";
   }
 
 }

@@ -1,3 +1,15 @@
-<p>
-  task-detail works!
-</p>
+<div class="detail_wrap">
+	<div class="detail_top"><p>업무 상세 내용 확인</p>
+		<div class="detail_title">제목 : {{ title }}</div>
+	</div>
+	<div class="detail_body">
+		<div>
+			<div class="detail_title">상세 내용</div>
+			<div class="detail_content">{{ content }}</div>
+		</div>
+		<div>
+			<div class="detail_title">첨부파일</div>
+			<div class="detail_attach">{{ attach }}</div>
+		</div>
+	</div>
+</div>

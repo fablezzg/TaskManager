@@ -16,23 +16,22 @@ import { ServerApiService } from './service/server-api.service';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MyTaskListComponent,
-    TaskDetailComponent,
-    NewSubTaskComponent,
-    NewTaskComponent,
-    LoginComponent,
-    MainComponent
-  ],
-  imports: [
-	FormsModule,
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule
-  ],
-  providers: [ServerApiService],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		MyTaskListComponent,
+		TaskDetailComponent,
+		NewSubTaskComponent,
+		NewTaskComponent,
+		LoginComponent,
+		MainComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		AppRoutingModule,
+		FormsModule
+	],
+	providers: [ServerApiService],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

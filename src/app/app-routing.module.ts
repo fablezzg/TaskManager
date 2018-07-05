@@ -20,10 +20,10 @@ const ROUTES: Routes = [
 		children: [
 			{ path: 'my-task-list', component: MyTaskListComponent },
 			{ path: 'new-task', component: NewTaskComponent },
-			{path: '', redirectTo:'my-task-list', pathMatch: 'full'}
+			{ path: 'task-detail', component: TaskDetailComponent },
+			{ path: '', redirectTo:'my-task-list', pathMatch: 'full'}
 			]
 	},
-	{ path: 'task-detail', component: TaskDetailComponent, canActivate: [AuthGuard] },
 	{ path: 'new-sub-task', component: NewSubTaskComponent, canActivate: [AuthGuard] },
 	{ path: '**', redirectTo: '/login' }
 ];
