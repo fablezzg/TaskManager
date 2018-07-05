@@ -1,3 +1,14 @@
-<p>
-  login works!
-</p>
+<div class="login_body">
+	<div class="login_wrap">
+		<div class="login_top">
+			<img src="/assets/imgs/welgate_logo.png">
+		</div>
+		<div class="login_box">
+			<div class="login_input"> 아이디 : <input [(ngModel)]="client_id"></div>
+			<div class="login_input"> 비밀번호 : <input [(ngModel)]="password" type="password"></div>
+		</div>
+		<div class="login_bottom">
+			<button class="login_btn" type="submit" (click)="onClickLogIn()">로그인</button>
+		</div>
+	</div>
+</div>
