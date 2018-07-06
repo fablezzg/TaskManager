@@ -10,9 +10,11 @@ import { IProject } from "../../data-form/data-form";
 export class MyTaskListComponent implements OnInit {
 
 	sort_arrow: string = "бщ";
-	current_state: string = "ALL";
 	current_arrow: string = "DOWN";
 	sort_selected: string = "date";
+	open_selected: boolean = true;
+	close_selected: boolean = true;
+
 	projects:IProject[];
 	constructor(private router:Router) { }
 
@@ -46,7 +48,7 @@ export class MyTaskListComponent implements OnInit {
 		this.router.navigate(['main/task-detail'], {replaceUrl: true});
 	}
 
-	sort(sortWay: string) {
+	select(sortWay: string) {
 		if (sortWay == "date") {
 			console.log("[my-task-list] sort() :: date");
 			if(this.sort_selected && this.sort_selected == "date") {
@@ -62,10 +64,18 @@ export class MyTaskListComponent implements OnInit {
 			this.doSort(sortWay);
 		} else if (sortWay == "open") {
 			console.log("[my-task-list] sort() :: open");
-			this.current_state = "OPEN";
+			if(this.open_selected){
+				this.open_selected = false;
+			} else {
+				this.open_selected = true;
+			}
 		} else if (sortWay == "close") {
 			console.log("[my-task-list] sort() :: close");
-			this.current_state = "CLOSE";
+			if(this.close_selected){
+				this.close_selected = false;
+			} else {
+				this.close_selected = true;
+			}
 		}
 	}
 
