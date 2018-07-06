@@ -1,0 +1,8 @@
+.inner-wrap {display: flex; flex-direction:column; justify-content: center;}
+
+.title_wrap {align-items: center; display: flex; justify-content: center; flex-shrink: 1;}
+.title_text {padding: 0 2rem; font-size: 0.9rem;}
+.title_input {width: 100%;}
+
+.editor_wrap {margin-top: 1rem;}
+.quill-editor {height: auto;}

@@ -1,3 +1,24 @@
-<p>
-  new-task works!
-</p>
+<!-- <div class="inner-wrap">
+	<div class="title_wrap">
+		<span class="title_text">Title</span><input class="title_input" [(ngModel)]="title" />
+	</div>
+	<app-ngx-editor [config]="editorConfig" [(ngModel)]="content"></app-ngx-editor>
+	<div class="editor_wrap">
+		<quill-editor [style]="style" class="quill-editor" [(ngModel)]="content" [modules]="editorConfig" [theme]="'snow'" [readOnly]="false"
+		(onEditorCreated)="onEditorCreated($);" (onContentChanged)="onContentChanged($);" (onSelectionChanged)="onSelectionChanged($);">
+		</quill-editor>
+	</div>
+	
+	<div class="btns_wrap">
+		<button (click)="onSubmit();">Submit</button>
+	</div>
+</div> -->
+
+<app-common-editor [readonly]="readonly" [(title)]="title" [(content)]="content"
+	(onEditorCreated)="onEditorCreated($event);" (onContentChanged)="onContentChanged($event);" (onSelectionChanged)="onSelectionChanged($event);">
+</app-common-editor>
+
+<div class="btns_wrap">
+	<button (click)="onSubmit();">Submit</button>
+	<input type="file" value="Attach File" multiple (change)="onFileChange($event);"/>
+</div>

@@ -8,6 +8,7 @@ import  "rxjs/add/operator/retry";
 import  "rxjs/add/operator/timeout";
 import  "rxjs/add/operator/catch";
 import  "rxjs/add/operator/finally";
+import  "rxjs/add/operator/take";
 
 export interface IHttpOptions {
     headers?: HttpHeaders | {
@@ -18,7 +19,7 @@ export interface IHttpOptions {
         [param: string]: string | string[];
     };
     reportProgress?: boolean;
-    responseType: 'arraybuffer';
+    responseType?: 'arraybuffer';
     withCredentials?: boolean;
 }
 
@@ -26,6 +27,7 @@ interface Responsible { (response:any, operationName:string):void }
 
 const TIMEOUT:number = 40 * 1000;
 
+@Injectable()
 export class WhttpClient {
 
 	constructor( private httpClient: HttpClient) {
@@ -56,11 +58,11 @@ export class WhttpClient {
 	}
 
 	public requestPut(url:string, body:any | null, httpOptions:IHttpOptions, operationName:string):Observable<any> {
-		return this.pipe(this.httpClient.put<any>( url, JSON.stringify( body ), httpOptions as any), operationName);
+		return this.pipe(this.httpClient.put<any>( url, (body instanceof FormData) ? body : JSON.stringify( body ), httpOptions as any), operationName);
 	}
 
 	public requestPost(url:string, body:any, httpOptions:IHttpOptions, operationName:string):Observable<any> {
-		return this.pipe(this.httpClient.post<any>( url, JSON.stringify( body ), httpOptions as any), operationName);
+		return this.pipe(this.httpClient.post<any>( url, (body instanceof FormData) ? body : JSON.stringify( body ), httpOptions as any), operationName);
 	}
 
 	public requestDelete(url:string, httpOptions:IHttpOptions, operationName:string):Observable<any> {

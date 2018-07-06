@@ -1,3 +1,6 @@
-<p>
-  task-detail works!
-</p>
+<app-common-editor [readonly]="readonly" [title]="title" [(content)]="content">
+</app-common-editor>
+
+<div class="btns_wrap">
+	<button (click)="onClickEdit();">Edit</button>
+</div>

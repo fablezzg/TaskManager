@@ -12,12 +12,24 @@ import { NewTaskComponent } from './components/new-task/new-task.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 
+import { WhttpClient } from './service/whttp-client';
 import { ServerApiService } from './service/server-api.service';
 
+import { NgxEditorModule } from 'ngx-editor';
+import { QuillModule } from 'ngx-quill';
+import { CommonEditorComponent } from './components/common-editor/common-editor.component';
+
+@NgModule( {
+	imports: [NgxEditorModule],
+	exports: [NgxEditorModule],
+	declarations: []
+} )
+export class ExternalModule { }
 
 @NgModule({
   declarations: [
     AppComponent,
+    CommonEditorComponent,
     MyTaskListComponent,
     TaskDetailComponent,
     NewSubTaskComponent,
@@ -30,9 +42,10 @@ import { ServerApiService } from './service/server-api.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    ExternalModule,
+    QuillModule
   ],
-  providers: [ServerApiService],
+  providers: [WhttpClient, ServerApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
