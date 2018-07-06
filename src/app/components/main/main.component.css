@@ -4,8 +4,8 @@
 .logo { height: 60px; }
 nav { display: flex; }
 nav div { width: 167px; height: 70px; font-size: 18px; line-height: 70px; text-align: center; color: rgba(255, 255, 255, 0.3); cursor: pointer; color: #222222; }
-nav div.selected {background: #666666; color: #ffffff;	}
-.time_box { flex:1; margin-right: 5px; font-size: 14px; text-align: right; color: #222222; 	}
+nav div.selected { background: #666666; color: #ffffff; }
+.time_box { flex:1; margin-right: 5px; font-size: 14px; text-align: right; color: #666666; 	}
 
 .main_bottom { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 #main_body { width: 1000px; }
