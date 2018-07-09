@@ -55,7 +55,7 @@ export class MyTaskListComponent implements OnInit {
 
 	onClickItem(task_id: string): void {
 		console.log("[my-task-list] onClickItem ::" + task_id);
-		this.router.navigate(['main/task-detail'], {replaceUrl: true});
+		this.router.navigate(['main/task-detail', task_id], {replaceUrl: true});
 	}
 
 	select(sortWay: string) {

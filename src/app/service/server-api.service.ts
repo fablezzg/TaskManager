@@ -103,8 +103,7 @@ export interface IProject {
 	content: string;
 	attach: string;
 	due_date: string;
-	handers: [{ user_id:string; due_date:string; comment: string; }]
-	
+	handers: [{ user_id:string; due_date:string; comment: string; }];
 	task_state: string;
 	reg_date: string;
 	task_id: string;

@@ -20,7 +20,7 @@ const ROUTES: Routes = [
 		children: [
 			{ path: 'my-task-list', component: MyTaskListComponent },
 			{ path: 'new-task', component: NewTaskComponent },
-			{ path: 'task-detail', component: TaskDetailComponent },
+			{ path: 'task-detail/:project-id', component: TaskDetailComponent },
 			{ path: '', redirectTo:'my-task-list', pathMatch: 'full'}
 			]
 	},
