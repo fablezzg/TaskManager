@@ -20,8 +20,8 @@ import { QuillModule } from 'ngx-quill';
 import { CommonEditorComponent } from './components/common-editor/common-editor.component';
 
 @NgModule( {
-	imports: [NgxEditorModule],
-	exports: [NgxEditorModule],
+	imports: [NgxEditorModule, QuillModule],
+	exports: [NgxEditorModule, QuillModule],
 	declarations: []
 } )
 export class ExternalModule { }
@@ -43,7 +43,6 @@ export class ExternalModule { }
     HttpClientModule,
     AppRoutingModule,
     ExternalModule,
-    QuillModule
   ],
   providers: [WhttpClient, ServerApiService],
   bootstrap: [AppComponent]

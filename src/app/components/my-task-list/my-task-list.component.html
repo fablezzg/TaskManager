@@ -1,5 +1,30 @@
-<div class="myTask_body">
-	<div class="myTask_top">
-		<div>내 업무 리스트</div>
+<div class="list_wrap">
+	<div class="list_header">
+		<div class="header_left">
+			<div class="list_sort" [ngClass]="{'left_selected' : open_selected}" (click)="select('open')"><font color="#fd3131">■</font> 열림</div>
+			<div class="list_sort" [ngClass]="{'left_selected' : close_selected}" (click)="select('close')"><font color="#2020ff">■</font> 닫힘</div>
+		</div>
+		<div class="header_right">
+			<div class="list_sort" [ngClass]="{'selected' : sort_selected == 'date'}" (click)="select('date')">{{ sort_arrow }}날짜순</div>
+		</div>
+	</div>
+	<div class="list_item" *ngFor="let project of projects">
+		<div class="list_content" *ngIf="(open_selected && project.task_state == 'OPEN') || (close_selected && project.task_state == 'CLOSE')">
+			<div class="item_top">
+				<div class="top_left">
+					<div class="item_sub" [ngClass]="{'open' : project.task_state == 'OPEN', 'close' : project.task_state == 'CLOSE'}">{{ project?.task_state }}</div>
+					<div class="item_sub">[{{ project?.task_id }}]</div>
+				</div>
+				<div class="top_right">
+					<div class="item-info">
+						<div class="item_sub">{{ project?.task_owner_id }}</div>
+						<div class="item_sub">{{ project?.task_date }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="item_bottom" (click)="onClickItem(project.task_id)">
+				<div class="item_title">{{ project?.title }}</div>
+			</div>
+		</div>
 	</div>
 </div>

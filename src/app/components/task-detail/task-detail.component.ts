@@ -18,13 +18,14 @@ export class TaskDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.serverApiService.getTaskDetail("TSK-1VKJJ9MYAA3").take(1).subscribe((response:IResponse) => {
+		this.serverApiService.getTaskDetail("TSK-5FKJJ9RK5BT").take(1).subscribe((response:IResponse) => {
 			let data:ITaskDetail[] = response.data;
 		
 			console.log("[TaskDetailComponent] data : ", response);
 		
 			if(data.length > 0) {
 				this.content = data[0].content;
+				this.title = data[0].title;
 			}
 			
 			

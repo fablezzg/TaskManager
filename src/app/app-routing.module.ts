@@ -8,19 +8,23 @@ import { NewSubTaskComponent } from './components/new-sub-task/new-sub-task.comp
 import { NewTaskComponent } from './components/new-task/new-task.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 
+import { AuthService } from "./auth.service";
+import { AuthGuard } from './auth-guard.service';
+
 const ROUTES: Routes = [
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: 'login', component: LoginComponent },
 	{	path: 'main', 
 		component: MainComponent,
+		canActivate: [AuthGuard],
 		children: [
 			{ path: 'my-task-list', component: MyTaskListComponent },
 			{ path: 'new-task', component: NewTaskComponent },
-			{path: '', redirectTo:'my-task-list', pathMatch: 'full'}
+			{ path: 'task-detail', component: TaskDetailComponent },
+			{ path: '', redirectTo:'my-task-list', pathMatch: 'full'}
 			]
 	},
-	{ path: 'task-detail', component: TaskDetailComponent },
-	{ path: 'new-sub-task', component: NewSubTaskComponent },
+	{ path: 'new-sub-task', component: NewSubTaskComponent, canActivate: [AuthGuard] },
 	{ path: '**', redirectTo: '/login' }
 ];
 
@@ -29,6 +33,7 @@ const ROUTES: Routes = [
 		RouterModule.forRoot( ROUTES/*, {useHash : true}*/ )
 	],
 	exports: [RouterModule],
+	providers: [AuthGuard, AuthService],
 	declarations: []
 } )
 export class AppRoutingModule { }

@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
 
 		this.router.events.subscribe(event => {
 			if(event instanceof NavigationEnd) {
-				console.log('Current URL ::: %s', event.url);
+				console.log('[Main] Current URL : %s', event.url);
 				this.page = event.url.split('/')[2] || this.page;
 			}
 		})
