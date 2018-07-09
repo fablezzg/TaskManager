@@ -18,7 +18,6 @@ export class TaskDetailComponent implements OnInit {
 		const mode = this.activatedRouter.snapshot.params["editmode"];
 		
 		Log.l("[TaskDetailComponent :: constructor]");
-		// 한글 테스트
 	}
 
 	ngOnInit() {
