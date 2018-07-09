@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { IProject } from "../../data-form/data-form";
+import { IProject } from "../../service/server-api.service";
 
 @Component({
 	selector: 'app-my-task-list',
@@ -15,30 +15,40 @@ export class MyTaskListComponent implements OnInit {
 	open_selected: boolean = true;
 	close_selected: boolean = true;
 
-	projects:IProject[];
+	projects: IProject[];
 	constructor(private router:Router) { }
 
 	ngOnInit() {
 		this.projects = [{
-			task_id:"TSK-8O6JJ9AT9AX",
-			task_owner_id: "cwchoi@welgate.com",
 			title: "Button GUI 변경",
 			content:"Button GUI 첨부된 파일로 변경해주세요.",
+			attach: "none",
+			due_date: "2018-07-04",
+			handers: [{ user_id: "cwchoi@welgate.com", due_date: "2018-07-04", comment: ""}],
 			task_state: "OPEN",
-			task_date: "2018-07-04"},{
-			task_id:"TSK-ABCDEFGHOJ",
-			task_owner_id: "yjchoi@welgate.com",
+			reg_date: "2018-07-01",
+			task_id:"TSK-8O6JJ9AT9AX",
+			writer:"yjchoi@welgate.com"},{
+			
 			title: "List GUI 변경",
 			content:"List GUI 첨부된 파일로 변경해주세요.",
+			attach: "none",
+			due_date: "2018-07-05",
+			handers: [{ user_id: "yjchoi@welgate.com", due_date: "2018-07-05", comment: ""}],
 			task_state: "CLOSE",
-			task_date: "2018-07-05"},{
-			task_id:"TSK-KLMNOPQRST",
-			task_owner_id: "jhjung@welgate.com",
+			reg_date: "2018-07-02",
+			task_id:"TSK-ABCDEFGHIJ",
+			writer:"cwchoi@welgate.com"},{
+			
 			title: "Task GUI 변경",
 			content:"Task GUI 첨부된 파일로 변경해주세요.",
+			attach: "none",
+			due_date: "2018-07-06",
+			handers: [{ user_id: "jhjung@welgate.com", due_date: "2018-07-06", comment: ""}],
 			task_state: "CLOSE",
-			task_date: "2018-07-06"}
-		];
+			reg_date: "2018-07-03",
+			task_id:"TSK-KLMNOPQRST",
+			writer:"cwchoi@welgate.com"}];
 
 		this.doSort("date");
 	}
@@ -85,11 +95,11 @@ export class MyTaskListComponent implements OnInit {
 			console.log("[my-task-list] doSort() :: Date & UP");
 			for(let i=0; i<this.projects.length; i++) {
 				for(let j=0; j<i; j++) {
-					if (this.projects[i].task_date == this.projects[j].task_date) {
+					if (this.projects[i].due_date == this.projects[j].due_date) {
 						/*let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;*/
-					} else if (this.projects[i].task_date < this.projects[j].task_date) {
+					} else if (this.projects[i].due_date < this.projects[j].due_date) {
 						let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;
@@ -100,11 +110,11 @@ export class MyTaskListComponent implements OnInit {
 			console.log("[my-task-list] doSort() :: Date & DOWN");
 			for(let i=(this.projects.length-1); i>=0; i--) {
 				for(let j=(this.projects.length-1); j>i; j--) {
-					if (this.projects[i].task_date == this.projects[j].task_date) {
+					if (this.projects[i].due_date == this.projects[j].due_date) {
 						/*let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;*/
-					} else if (this.projects[i].task_date < this.projects[j].task_date) {
+					} else if (this.projects[i].due_date < this.projects[j].due_date) {
 						let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;
