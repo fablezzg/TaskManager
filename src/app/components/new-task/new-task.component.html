@@ -14,11 +14,7 @@
 	</div>
 </div> -->
 
-<app-common-editor [readonly]="readonly" [(title)]="title" [(content)]="content"
-	(onEditorCreated)="onEditorCreated($event);" (onContentChanged)="onContentChanged($event);" (onSelectionChanged)="onSelectionChanged($event);">
+<app-common-editor [mode]="'new'" [(title)]="title" [(content)]="content"
+	(onEditorCreated)="onEditorCreated($event);" (onContentChanged)="onContentChanged($event);" (onSelectionChanged)="onSelectionChanged($event);"
+	(onClickCancel)="onClickCancel();" (onClickComplete)="onClickComplete();">
 </app-common-editor>
-
-<div class="btns_wrap">
-	<button (click)="onSubmit();">Submit</button>
-	<input type="file" value="Attach File" multiple (change)="onFileChange($event);"/>
-</div>

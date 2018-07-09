@@ -1,6 +1,3 @@
-<app-common-editor [readonly]="readonly" [title]="title" [(content)]="content">
+<app-common-editor [mode]="'readonly'" [title]="title" [(content)]="content"
+	(onClickCancel)="onClickCancel();" (onClickComplete)="onClickComplete();">
 </app-common-editor>
-
-<div class="btns_wrap">
-	<button (click)="onClickEdit();">Edit</button>
-</div>

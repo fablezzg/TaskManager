@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ServerApiService, IResponse, ITaskDetail } from "../../service/server-api.service";
+import { Log } from "../../utils/Log";
+import { ActivatedRoute } from "@angular/router";
 
 @Component( {
 	selector: 'app-task-detail',
@@ -8,33 +11,40 @@ import { ServerApiService, IResponse, ITaskDetail } from "../../service/server-a
 } )
 export class TaskDetailComponent implements OnInit {
 	
-	protected title:string;
-	protected content:string;
+	title:string;
+	content:string;
 	
-	public readonly:boolean = true;
-	
-	constructor(private serverApiService:ServerApiService) {
+	constructor(private serverApiService:ServerApiService, private location:Location, private activatedRouter:ActivatedRoute) {
+		const mode = this.activatedRouter.snapshot.params["editmode"];
 		
+		Log.l("[TaskDetailComponent :: constructor]");
 	}
 
 	ngOnInit() {
 		this.serverApiService.getTaskDetail("TSK-5FKJJ9RK5BT").take(1).subscribe((response:IResponse) => {
 			let data:ITaskDetail[] = response.data;
 		
-			console.log("[TaskDetailComponent] data : ", response);
+			Log.l("[TaskDetailComponent] data : ", response);
 		
 			if(data.length > 0) {
 				this.content = data[0].content;
 				this.title = data[0].title;
 			}
-			
-			
-			
 		});
 	}
 	
-	public onClickEdit():void {
+	onClickComplete():void {
+		Log.l("[TaskDetailComponent :: onSubmit()] title : " + this.title );
+		Log.l("[TaskDetailComponent :: onSubmit()] content : " + this.content );
 		
+		/*this.serverApiService.addTask({title : this.title, content : this.content, attach : this.file}).subscribe( (response:IResponse) => {
+			Log.l("[NewTaskComponent :: onSubmit()] response : ", response);
+		});*/
+	}
+	
+	onClickCancel():void {
+		Log.l("[TaskDetailComponent :: onClickCancel()]");
+		this.location.back();
 	}
 
 }

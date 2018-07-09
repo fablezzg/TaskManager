@@ -6,3 +6,5 @@
 
 .editor_wrap {margin-top: 1rem;}
 .quill-editor {height: auto;}
+
+.btns_wrap {display: flex; flex-direction: row-reverse;}

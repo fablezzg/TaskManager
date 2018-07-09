@@ -9,6 +9,7 @@ import  "rxjs/add/operator/timeout";
 import  "rxjs/add/operator/catch";
 import  "rxjs/add/operator/finally";
 import  "rxjs/add/operator/take";
+import { Log } from "../utils/Log";
 
 export interface IHttpOptions {
     headers?: HttpHeaders | {
@@ -31,11 +32,11 @@ const TIMEOUT:number = 40 * 1000;
 export class WhttpClient {
 
 	constructor( private httpClient: HttpClient) {
-		console.log("WhttpClientService constructor()");
+		Log.l("WhttpClientService constructor()");
 	}
 	
 	public responsible:Responsible = (response:any, operationName:string) => {
-		console.info( operationName + " : ", response );
+		Log.i( operationName + " : ", response );
 		if ( response.result == "fail" ) {
 			this.resultError( operationName, response )
 		}
@@ -75,7 +76,7 @@ export class WhttpClient {
 	
 	private handleError<T>( operationName: string, result?: T ) {
 		return ( error: any ): Observable<T> => {
-			console.log( `${operationName} failed: ${error.message}` );
+			Log.l( `${operationName} failed: ${error.message}` );
 			return of( result as T );
 		}
 	}

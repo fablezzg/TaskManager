@@ -11,13 +11,14 @@ import { NewSubTaskComponent } from './components/new-sub-task/new-sub-task.comp
 import { NewTaskComponent } from './components/new-task/new-task.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { CommonEditorComponent } from './components/common-editor/common-editor.component';
 
 import { WhttpClient } from './service/whttp-client';
 import { ServerApiService } from './service/server-api.service';
 
 import { NgxEditorModule } from 'ngx-editor';
 import { QuillModule } from 'ngx-quill';
-import { CommonEditorComponent } from './components/common-editor/common-editor.component';
+
 
 @NgModule( {
 	imports: [NgxEditorModule, QuillModule],

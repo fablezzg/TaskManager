@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerApiService, IResponse } from "../../service/server-api.service";
+import { Location } from '@angular/common';
+import { Log } from "../../utils/Log";
 
 @Component({
 	selector: 'app-new-task',
@@ -7,11 +9,11 @@ import { ServerApiService, IResponse } from "../../service/server-api.service";
 	styleUrls: ['./new-task.component.css']
 })
 export class NewTaskComponent implements OnInit {
-	protected title:string;
-	protected content:string;
-	protected file:File[];
+	title:string;
+	content:string;
+	file:File[];
 
-	public readonly:boolean = false;
+	readonly:boolean = false;
 
 	/*public editorConfig = {
 		"editable": true,
@@ -36,7 +38,7 @@ export class NewTaskComponent implements OnInit {
 		]
 	};*/
 	
-	public editorConfig = {
+	editorConfig = {
 		toolbar: [
 			['bold', 'italic', 'underline', 'strike'],        // toggled buttons
 			['blockquote', 'code-block'],
@@ -60,35 +62,40 @@ export class NewTaskComponent implements OnInit {
 		]
 	};
 	
-	constructor(private serverApiService:ServerApiService) { }
+	constructor(private serverApiService:ServerApiService, private location:Location) { }
 
 	ngOnInit() {
 	}
 	
-	protected onSubmit():void {
-		console.log("[NewTaskComponent :: onSubmit()] title : " + this.title );
-		console.log("[NewTaskComponent :: onSubmit()] content : " + this.content );
+	onClickComplete():void {
+		Log.l("[NewTaskComponent :: onSubmit()] title : " + this.title );
+		Log.l("[NewTaskComponent :: onSubmit()] content : " + this.content );
 		
 		this.serverApiService.addTask({title : this.title, content : this.content, attach : this.file}).subscribe( (response:IResponse) => {
-			console.log("[NewTaskComponent :: onSubmit()] response : ", response);
+			Log.l("[NewTaskComponent :: onSubmit()] response : ", response);
 		});
 	}
 	
-	protected onEditorCreated(editor:any):void {
-		console.log("[NewTaskComponent :: onEditorCreated()] editor : ", editor);
+	onClickCancel():void {
+		Log.l("[NewTaskComponent :: onClickCancel()]");
+		this.location.back();
 	}
 	
-	protected onContentChanged(content:any):void {
-		console.log("[NewTaskComponent :: onContentChanged()] this.content : " + this.content );
-		console.log("[NewTaskComponent :: onContentChanged()] this.title : " + this.title );
+	onEditorCreated(editor:any):void {
+		Log.l("[NewTaskComponent :: onEditorCreated()] editor : ", editor);
 	}
 	
-	protected onSelectionChanged(selection:any):void {
-		console.log("[NewTaskComponent :: onSelectionChanged()] selection : ", selection);
+	onContentChanged(content:any):void {
+		Log.l("[NewTaskComponent :: onContentChanged()] this.content : " + this.content );
+		Log.l("[NewTaskComponent :: onContentChanged()] this.title : " + this.title );
+	}
+	
+	onSelectionChanged(selection:any):void {
+		Log.l("[NewTaskComponent :: onSelectionChanged()] selection : ", selection);
 	}
 	
 	onFileChange(obj:any):void {
-		console.log("[NewTaskComponent :: onFileChange()] obj : ", obj);
+		Log.l("[NewTaskComponent :: onFileChange()] obj : ", obj);
 		this.file = obj.target.files;
 	}
 }

@@ -1,12 +1,27 @@
 <div class="inner-wrap">
 	<div class="title_wrap">
-		<span class="title_text">Title</span><input class="title_input" [(ngModel)]="title" (ngModelChange)="titleChange.emit($event);" [readonly]="readonly"/>
+		<span class="title_text">Title</span><input class="title_input" [(ngModel)]="title" (ngModelChange)="titleChange.emit($event);" [readonly]="mode==Mode.READONLY ? true : false"/>
 	</div>
 	<!-- <app-ngx-editor [config]="editorConfig" [(ngModel)]="content"></app-ngx-editor> -->
 	<div class="editor_wrap">
 		<quill-editor [placeholder]="" [style]="style" class="quill-editor" [(ngModel)]="content" (ngModelChange)="contentChange.emit($event);" 
-		[modules]="editorConfig" [theme]="'snow'" [readOnly]="readonly"
+		[modules]="editorConfig" [theme]="'snow'" [readOnly]="mode==Mode.READONLY ? true : false"
 		(onEditorCreated)="_onEditorCreated($event);" (onContentChanged)="_onContentChanged($event);" (onSelectionChanged)="_onSelectionChanged($event);">
 		</quill-editor>
+	</div>
+</div>
+
+<div class="btns_wrap">
+	<div *ngIf="mode == Mode.READONLY">
+		<button (click)="_onClickCancel();">수정</button>
+	</div>
+	<div *ngIf="mode == Mode.NEW">
+		<button (click)="_onClickCancel();">취소</button>
+		<button (click)="_onClickComplete();">작성완료</button>
+	</div>
+	<div *ngIf="mode == Mode.EDITABLE">
+		<button (click)="_onClickCancel();">취소</button>
+		<button (click)="_onClickComplete();">수정완료</button>
+		<input type="file" value="Attach File" multiple (change)="onFileChange($event);"/>
 	</div>
 </div>

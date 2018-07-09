@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { IProject } from "../../data-form/data-form";
+import { Log } from "../../utils/Log";
 
 @Component({
 	selector: 'app-my-task-list',
@@ -9,7 +10,7 @@ import { IProject } from "../../data-form/data-form";
 })
 export class MyTaskListComponent implements OnInit {
 
-	sort_arrow: string = "¡é";
+	sort_arrow: string = "ï¿½ï¿½";
 	current_arrow: string = "DOWN";
 	sort_selected: string = "date";
 	open_selected: boolean = true;
@@ -22,20 +23,20 @@ export class MyTaskListComponent implements OnInit {
 		this.projects = [{
 			task_id:"TSK-8O6JJ9AT9AX",
 			task_owner_id: "cwchoi@welgate.com",
-			title: "Button GUI º¯°æ",
-			content:"Button GUI Ã·ºÎµÈ ÆÄÀÏ·Î º¯°æÇØÁÖ¼¼¿ä.",
+			title: "Button GUI ï¿½ï¿½ï¿½ï¿½",
+			content:"Button GUI Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.",
 			task_state: "OPEN",
 			task_date: "2018-07-04"},{
 			task_id:"TSK-ABCDEFGHOJ",
 			task_owner_id: "yjchoi@welgate.com",
-			title: "List GUI º¯°æ",
-			content:"List GUI Ã·ºÎµÈ ÆÄÀÏ·Î º¯°æÇØÁÖ¼¼¿ä.",
+			title: "List GUI ï¿½ï¿½ï¿½ï¿½",
+			content:"List GUI Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.",
 			task_state: "CLOSE",
 			task_date: "2018-07-05"},{
 			task_id:"TSK-KLMNOPQRST",
 			task_owner_id: "jhjung@welgate.com",
-			title: "Task GUI º¯°æ",
-			content:"Task GUI Ã·ºÎµÈ ÆÄÀÏ·Î º¯°æÇØÁÖ¼¼¿ä.",
+			title: "Task GUI ï¿½ï¿½ï¿½ï¿½",
+			content:"Task GUI Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.",
 			task_state: "CLOSE",
 			task_date: "2018-07-06"}
 		];
@@ -44,13 +45,13 @@ export class MyTaskListComponent implements OnInit {
 	}
 
 	onClickItem(task_id: string): void {
-		console.log("[my-task-list] onClickItem ::" + task_id);
+		Log.l("[my-task-list] onClickItem ::" + task_id);
 		this.router.navigate(['main/task-detail'], {replaceUrl: true});
 	}
 
 	select(sortWay: string) {
 		if (sortWay == "date") {
-			console.log("[my-task-list] sort() :: date");
+			Log.l("[my-task-list] sort() :: date");
 			if(this.sort_selected && this.sort_selected == "date") {
 				if(this.current_arrow == "UP") {
 					this.current_arrow = "DOWN";
@@ -63,14 +64,14 @@ export class MyTaskListComponent implements OnInit {
 			}
 			this.doSort(sortWay);
 		} else if (sortWay == "open") {
-			console.log("[my-task-list] sort() :: open");
+			Log.l("[my-task-list] sort() :: open");
 			if(this.open_selected){
 				this.open_selected = false;
 			} else {
 				this.open_selected = true;
 			}
 		} else if (sortWay == "close") {
-			console.log("[my-task-list] sort() :: close");
+			Log.l("[my-task-list] sort() :: close");
 			if(this.close_selected){
 				this.close_selected = false;
 			} else {
@@ -80,9 +81,9 @@ export class MyTaskListComponent implements OnInit {
 	}
 
 	doSort(sortWay: string) {
-		console.log("[my-task-list] doSort() ::", sortWay);
+		Log.l("[my-task-list] doSort() ::", sortWay);
 		if(sortWay == 'date' && this.current_arrow == "UP") {
-			console.log("[my-task-list] doSort() :: Date & UP");
+			Log.l("[my-task-list] doSort() :: Date & UP");
 			for(let i=0; i<this.projects.length; i++) {
 				for(let j=0; j<i; j++) {
 					if (this.projects[i].task_date == this.projects[j].task_date) {
@@ -97,7 +98,7 @@ export class MyTaskListComponent implements OnInit {
 				}
 			}
 		} else if(sortWay == 'date' && this.current_arrow == "DOWN") {
-			console.log("[my-task-list] doSort() :: Date & DOWN");
+			Log.l("[my-task-list] doSort() :: Date & DOWN");
 			for(let i=(this.projects.length-1); i>=0; i--) {
 				for(let j=(this.projects.length-1); j>i; j--) {
 					if (this.projects[i].task_date == this.projects[j].task_date) {
@@ -112,14 +113,14 @@ export class MyTaskListComponent implements OnInit {
 				}
 			}
 		}
-		console.log("[my-task-list] doSort() result :: ", this.projects);
+		Log.l("[my-task-list] doSort() result :: ", this.projects);
 	}
 
 	arrowChange(arrow: string) {
 		if(arrow == "UP") {
-			this.sort_arrow = "¡è";
+			this.sort_arrow = "ï¿½ï¿½";
 		} else if(arrow == "DOWN") {
-			this.sort_arrow = "¡é";
+			this.sort_arrow = "ï¿½ï¿½";
 		}
 	}
 }
