@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { IProject } from "../../data-form/data-form";
 import { Log } from "../../utils/Log";
+import { IProject } from "../../service/server-api.service";
 
 @Component({
 	selector: 'app-my-task-list',
@@ -16,37 +16,47 @@ export class MyTaskListComponent implements OnInit {
 	open_selected: boolean = true;
 	close_selected: boolean = true;
 
-	projects:IProject[];
+	projects: IProject[];
 	constructor(private router:Router) { }
 
 	ngOnInit() {
 		this.projects = [{
-			task_id:"TSK-8O6JJ9AT9AX",
-			task_owner_id: "cwchoi@welgate.com",
 			title: "Button GUI ����",
 			content:"Button GUI ÷�ε� ���Ϸ� �������ּ���.",
+			attach: "none",
+			due_date: "2018-07-04",
+			handers: [{ user_id: "cwchoi@welgate.com", due_date: "2018-07-04", comment: ""}],
 			task_state: "OPEN",
-			task_date: "2018-07-04"},{
-			task_id:"TSK-ABCDEFGHOJ",
-			task_owner_id: "yjchoi@welgate.com",
+			reg_date: "2018-07-01",
+			task_id:"TSK-8O6JJ9AT9AX",
+			writer:"yjchoi@welgate.com"},{
+			
 			title: "List GUI ����",
 			content:"List GUI ÷�ε� ���Ϸ� �������ּ���.",
+			attach: "none",
+			due_date: "2018-07-05",
+			handers: [{ user_id: "yjchoi@welgate.com", due_date: "2018-07-05", comment: ""}],
 			task_state: "CLOSE",
-			task_date: "2018-07-05"},{
-			task_id:"TSK-KLMNOPQRST",
-			task_owner_id: "jhjung@welgate.com",
+			reg_date: "2018-07-02",
+			task_id:"TSK-ABCDEFGHIJ",
+			writer:"cwchoi@welgate.com"},{
+			
 			title: "Task GUI ����",
 			content:"Task GUI ÷�ε� ���Ϸ� �������ּ���.",
+			attach: "none",
+			due_date: "2018-07-06",
+			handers: [{ user_id: "jhjung@welgate.com", due_date: "2018-07-06", comment: ""}],
 			task_state: "CLOSE",
-			task_date: "2018-07-06"}
-		];
+			reg_date: "2018-07-03",
+			task_id:"TSK-KLMNOPQRST",
+			writer:"cwchoi@welgate.com"}];
 
 		this.doSort("date");
 	}
 
 	onClickItem(task_id: string): void {
 		Log.l("[my-task-list] onClickItem ::" + task_id);
-		this.router.navigate(['main/task-detail'], {replaceUrl: true});
+		this.router.navigate(['main/task-detail', task_id], {replaceUrl: true});
 	}
 
 	select(sortWay: string) {
@@ -86,11 +96,11 @@ export class MyTaskListComponent implements OnInit {
 			Log.l("[my-task-list] doSort() :: Date & UP");
 			for(let i=0; i<this.projects.length; i++) {
 				for(let j=0; j<i; j++) {
-					if (this.projects[i].task_date == this.projects[j].task_date) {
+					if (this.projects[i].due_date == this.projects[j].due_date) {
 						/*let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;*/
-					} else if (this.projects[i].task_date < this.projects[j].task_date) {
+					} else if (this.projects[i].due_date < this.projects[j].due_date) {
 						let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;
@@ -101,11 +111,11 @@ export class MyTaskListComponent implements OnInit {
 			Log.l("[my-task-list] doSort() :: Date & DOWN");
 			for(let i=(this.projects.length-1); i>=0; i--) {
 				for(let j=(this.projects.length-1); j>i; j--) {
-					if (this.projects[i].task_date == this.projects[j].task_date) {
+					if (this.projects[i].due_date == this.projects[j].due_date) {
 						/*let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;*/
-					} else if (this.projects[i].task_date < this.projects[j].task_date) {
+					} else if (this.projects[i].due_date < this.projects[j].due_date) {
 						let temp: IProject = this.projects[i];
 						this.projects[i] = this.projects[j];
 						this.projects[j] = temp;
